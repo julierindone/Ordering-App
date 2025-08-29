@@ -21,6 +21,38 @@
 	<main class="smythe-regular">
 		<div id="menu"></div>
 	</main>
+
+	<br>
+	<br>
+	<!-- REMOVE -->
+	<div id="pay-modal">
+		<h2 class="roboto">Enter card details</h2>
+		<form id="pay-form" action="submit"  class="roboto">
+			<input 
+				type="text"
+				name="fullCustomerName"
+				id="customer-name"
+				placeholder="Enter your name" 
+				aria-label="Full name" 
+				required />
+			<input 
+				type="number"
+				name="cardNumber"
+				id="card-number" 
+				placeholder="Enter card number" 
+			aria-label="Card number" 
+			required />
+			<input 
+				type="password"
+				name="cvv"
+				id="cvv"
+				placeholder="Enter CVV" 
+				aria-label="CVV" 
+				required />
+			<button id="pay-btn" class="green-btn">Pay</button>
+		</form>
+	</div>
+
 	<script src="index.js" type="module"></script>
 	<script src="https://kit.fontawesome.com/fd264b1039.js" crossorigin="anonymous"></script>
 </body>
