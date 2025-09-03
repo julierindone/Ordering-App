@@ -5,7 +5,7 @@ const orderSummaryEl = document.getElementById('order-summary')
 const selectionListEl = document.getElementById('selection-list')
 const orderTotalEl = document.getElementById('order-total')
 let orderTotal = 0
-let orderedItemObjectArray = []
+let selectedItemObjectArray = []
 
 document.addEventListener('DOMContentLoaded', renderMenu())
 
@@ -18,9 +18,9 @@ document.addEventListener('click', (event) => {
 function handleOrderSummary(itemId) {
 	let item = ''
 
-	// check orderedItemObjectArray to see if item is already in it.
+	// check selectedItemObjectArray to see if item is already in it.
 	const selectedItemObject =
-		orderedItemObjectArray.filter((menuItem) => {
+		selectedItemObjectArray.filter((menuItem) => {
 			return menuItem.id === parseInt(itemId)
 		})[0]
 
@@ -40,10 +40,10 @@ function handleOrderSummary(itemId) {
 			getTotalItemCost: function () { this.totalItemCost = this.price * this.quantity } // will this recalculate automatically if another of the same item is added? should it not be a property?
 		}
 		// push to array
-		orderedItemObjectArray.push(item)
+		selectedItemObjectArray.push(item)
 	}
 
-	// if the item already in the orderedItemObjectArray, reassign selectedItemObject to variable 'item'.
+	// if the item already in the selectedItemObjectArray, reassign selectedItemObject to variable 'item'.
 	else {
 		item = selectedItemObject
 	}
@@ -52,19 +52,19 @@ function handleOrderSummary(itemId) {
 	item.quantity++
 	item.getTotalItemCost()
 
-	// add price to orderTotal
+	// add price of selected item to orderTotal
 	// TODO: add reduction option
 	orderTotal += item.price
 	orderTotalEl.innerHTML = `$${orderTotal}`
 
-	// add item to selection list and reload in DOM so fields are updated
+	// add selected item to selectionList and reload in DOM so fields are updated
 	renderSelectionList(item)
 	orderSummaryEl.style.display != 'flex' && (orderSummaryEl.style.display = 'flex')
 }
 
 // TODO: Add conditional so span only shows if quantity is >1
 // TODO: update + to - on the add-remove-btn button next to the item in the menu.
-function orderedItemHtml(item) {
+function selectedItemHtml(item) {
 	return `
 		<div class="selection">
 			<div class="item-name-and-remove-btn">
@@ -98,6 +98,7 @@ function renderMenu() {
 	menuEl.innerHTML = createMenuHtml()
 }
 
+// TODO: selectionList needs to be held in an array so it doesn't overwrite itself!
 function renderSelectionList(item) {
-	selectionListEl.innerHTML = orderedItemHtml(item)
+	selectionListEl.innerHTML = selectedItemHtml(item)
 }
