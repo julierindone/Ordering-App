@@ -5,6 +5,7 @@ const orderSummaryEl = document.getElementById('order-summary')
 const selectionListEl = document.getElementById('selection-list')
 const orderTotalEl = document.getElementById('order-total')
 let orderTotal = 0
+let orderedItemObjectArray = []
 
 document.addEventListener('DOMContentLoaded', renderMenu())
 
@@ -15,29 +16,63 @@ document.addEventListener('click', (event) => {
 })
 
 function handleOrderSummary(itemId) {
-	// find item associated with that ID.
+	let item = ''
+
+	// check orderedItemObjectArray to see if item is already in it.
 	const selectedItemObject =
-		menuArray.filter((menuItem) => {
+		orderedItemObjectArray.filter((menuItem) => {
 			return menuItem.id === parseInt(itemId)
 		})[0]
 
-	// Add item to selection list
-	selectionListEl.innerHTML += `
-		<div class="selection">
-			<div class="item-name-and-remove-btn">
-			<p class="item-name">${selectedItemObject.name}</p>
-			</div>
-			<p>$${selectedItemObject.price}</p>
-		</div>
-	`
+	// if not, create new object.
+	if (!selectedItemObject) {
+		const selectedItemInMenuArray =
+			menuArray.filter((menuItem) => {
+				return menuItem.id === parseInt(itemId)
+			})[0]
 
-	// TODO: update + to - on the button next to the item in the menu. This will need to be able to be reversed, also.
-	// Add price to orderTotal (// TODO: will also need to add handling to subtract)
-	orderTotal += selectedItemObject.price
+		item = {
+			name: selectedItemInMenuArray.name,
+			price: selectedItemInMenuArray.price,
+			id: selectedItemInMenuArray.id,
+			quantity: 0,
+			totalItemCost: 0,
+			getTotalItemCost: function () { this.totalItemCost = this.price * this.quantity } // will this recalculate automatically if another of the same item is added? should it not be a property?
+		}
+		// push to array
+		orderedItemObjectArray.push(item)
+	}
+
+	// if the item already in the orderedItemObjectArray, reassign selectedItemObject to variable 'item'.
+	else {
+		item = selectedItemObject
+	}
+
+	// update quantity and total cost for item
+	item.quantity++
+	item.getTotalItemCost()
+
+	// add price to orderTotal
+	// TODO: add reduction option
+	orderTotal += item.price
 	orderTotalEl.innerHTML = `$${orderTotal}`
 
-	// update order-summary display to flex if not already displayed
-	orderSummaryEl.style.display = 'none' && (orderSummaryEl.style.display = 'flex')
+	// add item to selection list and reload in DOM so fields are updated
+	renderSelectionList(item)
+	orderSummaryEl.style.display != 'flex' && (orderSummaryEl.style.display = 'flex')
+}
+
+// TODO: Add conditional so span only shows if quantity is >1
+// TODO: update + to - on the add-remove-btn button next to the item in the menu.
+function orderedItemHtml(item) {
+	return `
+		<div class="selection">
+			<div class="item-name-and-remove-btn">
+			<p class="item-name">${item.name}&emsp;<span class="multiple-item">(x${item.quantity})</span></p>
+			</div>
+			<p>$${item.totalItemCost}</p>
+		</div>
+	`
 }
 
 function createMenuHtml() {
@@ -61,4 +96,8 @@ function createMenuHtml() {
 
 function renderMenu() {
 	menuEl.innerHTML = createMenuHtml()
+}
+
+function renderSelectionList(item) {
+	selectionListEl.innerHTML = orderedItemHtml(item)
 }
