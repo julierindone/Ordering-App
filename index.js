@@ -29,31 +29,20 @@ function handleOrderSummary(itemId) {
 
 	// if not, create new object.
 	if (!selectedItemObject) {
-		const selectedItemInMenuArray =
-			menuArray.filter((menuItem) => {
-				return menuItem.id === parseInt(itemId)
-			})[0]
+		item = createNewObject(itemId)
 
-		item = {
-			name: selectedItemInMenuArray.name,
-			price: selectedItemInMenuArray.price,
-			id: selectedItemInMenuArray.id,
-			quantity: 0,
-			totalItemCost: 0,
-			getTotalItemCost: function () { this.totalItemCost = this.price * this.quantity } // will this recalculate automatically if another of the same item is added? should it not be a property?
-		}
 		// push to array
 		selectedItemObjectArray.push(item)
 
 		// create html
-		itemHtml = createSelectedItemHtml(item)
+		itemHtml = getSelectedItemHtml(item)
 		selectionListHtmlArray.push(itemHtml)
 	}
 
 	// if the item already in the selectedItemObjectArray, reassign selectedItemObject to variable 'item'.
 	else {
 		item = selectedItemObject
-		itemHtml = createSelectedItemHtml(item)
+		itemHtml = getSelectedItemHtml(item)
 	}
 
 	// get index of item in selectedItemObjectArray to use in html updates
@@ -69,17 +58,32 @@ function handleOrderSummary(itemId) {
 	orderTotalEl.innerHTML = `$${orderTotal}`
 
 	// update item html in list
-	itemHtml = createSelectedItemHtml(item)
+	itemHtml = getSelectedItemHtml(item)
 	selectionListHtmlArray.splice(itemHtmlIndex, 1, itemHtml)
 
 	// add reload in DOM so selectionList fields are updated
 	renderSelectionList(selectionListHtmlArray)
 	orderSummaryEl.style.display != 'flex' && (orderSummaryEl.style.display = 'flex')
+
+function createNewObject(itemId) {
+	const selectedItemInMenuArray =
+		menuArray.filter((menuItem) => {
+			return menuItem.id === parseInt(itemId)
+		})[0]
+
+	return {
+		name: selectedItemInMenuArray.name,
+		price: selectedItemInMenuArray.price,
+		id: selectedItemInMenuArray.id,
+		quantity: 0,
+		totalItemCost: 0,
+		getTotalItemCost: function () { this.totalItemCost = this.price * this.quantity } // will this recalculate automatically if another of the same item is added? should it not be a property?
+	}
 }
 
 // TODO: Add conditional so span only shows if quantity is >1
 // TODO: update + to - on the add-remove-btn button next to the item in the menu.
-function createSelectedItemHtml(item) {
+function getSelectedItemHtml(item) {
 	return `
 		<div class="selection">
 			<div class="item-name-and-remove-btn">
