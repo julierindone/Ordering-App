@@ -5,7 +5,9 @@ const orderSummaryEl = document.getElementById('order-summary')
 const selectionListEl = document.getElementById('selection-list')
 const orderTotalEl = document.getElementById('order-total')
 let orderTotal = 0
+let selectedItemObject = {}
 let selectedItemObjectArray = []
+let selectionListHtmlArray = []
 
 document.addEventListener('DOMContentLoaded', renderMenu())
 
@@ -17,9 +19,10 @@ document.addEventListener('click', (event) => {
 
 function handleOrderSummary(itemId) {
 	let item = ''
+	let itemHtml = ''
 
 	// check selectedItemObjectArray to see if item is already in it.
-	const selectedItemObject =
+	selectedItemObject =
 		selectedItemObjectArray.filter((menuItem) => {
 			return menuItem.id === parseInt(itemId)
 		})[0]
@@ -41,12 +44,20 @@ function handleOrderSummary(itemId) {
 		}
 		// push to array
 		selectedItemObjectArray.push(item)
+
+		// create html
+		itemHtml = createSelectedItemHtml(item)
+		selectionListHtmlArray.push(itemHtml)
 	}
 
 	// if the item already in the selectedItemObjectArray, reassign selectedItemObject to variable 'item'.
 	else {
 		item = selectedItemObject
+		itemHtml = createSelectedItemHtml(item)
 	}
+
+	// get index of item in selectedItemObjectArray to use in html updates
+	let itemHtmlIndex = selectionListHtmlArray.indexOf(itemHtml)
 
 	// update quantity and total cost for item
 	item.quantity++
@@ -57,22 +68,25 @@ function handleOrderSummary(itemId) {
 	orderTotal += item.price
 	orderTotalEl.innerHTML = `$${orderTotal}`
 
-	// add selected item to selectionList and reload in DOM so fields are updated
-	renderSelectionList(item)
+	// update item html in list
+	itemHtml = createSelectedItemHtml(item)
+	selectionListHtmlArray.splice(itemHtmlIndex, 1, itemHtml)
+
+	// add reload in DOM so selectionList fields are updated
+	renderSelectionList(selectionListHtmlArray)
 	orderSummaryEl.style.display != 'flex' && (orderSummaryEl.style.display = 'flex')
 }
 
 // TODO: Add conditional so span only shows if quantity is >1
 // TODO: update + to - on the add-remove-btn button next to the item in the menu.
-function selectedItemHtml(item) {
+function createSelectedItemHtml(item) {
 	return `
 		<div class="selection">
 			<div class="item-name-and-remove-btn">
-			<p class="item-name">${item.name}&emsp;<span class="multiple-item">(x${item.quantity})</span></p>
+			<p class="item-name">${item.name}&ensp;<span class="multiple-item">(x${item.quantity})</span></p>
 			</div>
 			<p>$${item.totalItemCost}</p>
-		</div>
-	`
+		</div>`
 }
 
 function createMenuHtml() {
@@ -99,6 +113,6 @@ function renderMenu() {
 }
 
 // TODO: selectionList needs to be held in an array so it doesn't overwrite itself!
-function renderSelectionList(item) {
-	selectionListEl.innerHTML = selectedItemHtml(item)
+function renderSelectionList(selectionListHtmlArray) {
+	selectionListEl.innerHTML = selectionListHtmlArray.join('')
 }
