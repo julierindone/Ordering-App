@@ -12,42 +12,51 @@
 </head>
 
 <body>
-	<header class="smythe-regular">
-		<div class="header-img" aria-label="juicy burger header">
-			<h1>Jimmy's Diner</h1>
-			<p class="subheader">The best burgers and pizza in town.</p>
-		</div>
-	</header>
-	<main class="smythe-regular">
-		<div id="menu"></div>
-	</main>
-
-	<br>
-	<br>
+	<div id="wrapper">
+		<header class="smythe-regular">
+			<div id="header-img" aria-label="juicy burger header">
+				<h1>Jimmy's Diner</h1>
+				<p class="subheader">The best burgers and pizza in town.</p>
+			</div>
+		</header>
+		<main id="main" class="smythe-regular">
+			<h2>Menu</h2>
+			<div id="menu"></div>
+			<div id="order-summary">
+				<h2>Your Order</h2>
+				<div id="selection-list"></div>
+				<div class="total-container">
+					<p>Total Price:</p>
+					<p id="order-total"></p>
+				</div>
+				<button id="complete-order-btn" class=" green-btn">Complete order</button>
+			</div>
+		</main>
+	</div>
 	<!-- REMOVE -->
 	<div id="pay-modal">
 		<h2 class="roboto">Enter card details</h2>
 		<form id="pay-form" action="submit"  class="roboto">
-			<input 
+			<input
 				type="text"
 				name="fullCustomerName"
 				id="customer-name"
-				placeholder="Enter your name" 
-				aria-label="Full name" 
+				placeholder="Enter your name"
+				aria-label="Full name"
 				required />
-			<input 
+			<input
 				type="number"
 				name="cardNumber"
-				id="card-number" 
-				placeholder="Enter card number" 
-			aria-label="Card number" 
+				id="card-number"
+				placeholder="Enter card number"
+			aria-label="Card number"
 			required />
-			<input 
+			<input
 				type="password"
 				name="cvv"
 				id="cvv"
-				placeholder="Enter CVV" 
-				aria-label="CVV" 
+				placeholder="Enter CVV"
+				aria-label="CVV"
 				required />
 			<button id="pay-btn" class="green-btn">Pay</button>
 		</form>
