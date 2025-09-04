@@ -12,24 +12,27 @@
 </head>
 
 <body>
-	<header class="smythe-regular">
-		<div class="header-img" aria-label="juicy burger header">
-			<h1>Jimmy's Diner</h1>
-			<p class="subheader">The best burgers and pizza in town.</p>
-		</div>
-	</header>
-	<main class="smythe-regular">
-		<div id="menu"></div>
-		<div id="order-summary">
-			<h2>Your Order</h2>
-			<div id="selection-list"></div>
-			<div class="total-container">
-				<p>Total Price:</p>
-				<p id="order-total"></p>
+	<div id="wrapper">
+		<header class="smythe-regular">
+			<div id="header-img" aria-label="juicy burger header">
+				<h1>Jimmy's Diner</h1>
+				<p class="subheader">The best burgers and pizza in town.</p>
 			</div>
-			<button id="complete-order-btn" class=" green-btn">Complete order</button>
-		</div>
-	</main>
+		</header>
+		<main id="main" class="smythe-regular">
+			<h2>Menu</h2>
+			<div id="menu"></div>
+			<div id="order-summary">
+				<h2>Your Order</h2>
+				<div id="selection-list"></div>
+				<div class="total-container">
+					<p>Total Price:</p>
+					<p id="order-total"></p>
+				</div>
+				<button id="complete-order-btn" class=" green-btn">Complete order</button>
+			</div>
+		</main>
+	</div>
 	<script src="index.js" type="module"></script>
 	<script src="https://kit.fontawesome.com/fd264b1039.js" crossorigin="anonymous"></script>
 </body>

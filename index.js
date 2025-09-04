@@ -64,6 +64,7 @@ function handleOrderSummary(itemId) {
 	// add reload in DOM so selectionList fields are updated
 	renderSelectionList(selectionListHtmlArray)
 	orderSummaryEl.style.display != 'flex' && (orderSummaryEl.style.display = 'flex')
+}
 
 function createNewObject(itemId) {
 	const selectedItemInMenuArray =
@@ -89,7 +90,7 @@ function getSelectedItemHtml(item) {
 			<div class="item-name-and-remove-btn">
 			<p class="item-name">${item.name}&ensp;<span class="multiple-item">(x${item.quantity})</span></p>
 			</div>
-			<p>$${item.totalItemCost}</p>
+			<p class="total-item-cost">$${item.totalItemCost}</p>
 		</div>`
 }
 
@@ -102,12 +103,12 @@ function createMenuHtml() {
 				<p class="item-name">${item.name}</p>
 				<p class="item-ingredients">${item.ingredients.join(', ')}</p>
 				<p class="item-price">$${item.price}</p>
-				</p>
 			</div>
 			<div class="add-remove">
 				<button class="add-remove-btn" type="click" data-item="${item.id}">+</button>
 			</div>
-		</div>`
+		</div>
+		<hr>`
 	})
 	return mapMenu.join('')
 }
