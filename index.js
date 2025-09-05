@@ -4,6 +4,8 @@ const menuEl = document.getElementById('menu')
 const orderSummaryEl = document.getElementById('order-summary')
 const selectionListEl = document.getElementById('selection-list')
 const orderTotalEl = document.getElementById('order-total')
+const completeOrderButton = document.getElementById('complete-order-btn')
+const payModal = document.getElementById('pay-modal')
 let orderTotal = 0
 let selectedItemObject = {}
 let selectedItemObjectArray = []
@@ -15,6 +17,11 @@ document.addEventListener('click', (event) => {
 	if (event.target.dataset.item) {
 		handleOrderSummary(event.target.dataset.item)
 	}
+})
+
+completeOrderButton.addEventListener('click', () => {
+	payModal.showModal()
+	payModal.style.display = 'flex'
 })
 
 function handleOrderSummary(itemId) {

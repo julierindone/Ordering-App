@@ -1,8 +1,11 @@
 :root {
-	--dark-gray: #bfbfbf;
-	--gray: #dddddd;
+	--dark-gray: #757575;
+	--gray: #bfbfbf;
+	--light-gray: #dddddd;
 	--green: #16db99;
 	--white: #ffffff;
+	--roboto: "Roboto", sans-serif;
+
 }
 
 html, body, h1, h2, p, .subheader {
@@ -68,7 +71,7 @@ h2 {
 /* ~~~~~~~~~~ MENU ~~~~~~~~~~ */
 
 #menu hr {
-  border-top: .5px solid var(--dark-gray);
+  border-top: .5px solid var(--gray);
   border-bottom: none;
 	margin: 1.1rem 4.5%;
 }
@@ -85,7 +88,7 @@ h2 {
 }
 
 button {
-	font-family: "Roboto", sans-serif;
+	font-family: var(--roboto);
 }
 
 .menu-item-text {
@@ -116,7 +119,7 @@ button {
 	align-self: center;
 	justify-self: start;
 	background-color: var(--white);
-	border: 1.5px solid var(--gray);
+	border: 1.5px solid var(--light-gray);
 	border-radius: 100%;
 	width:2.5rem;
 	height:2.5rem;
@@ -125,7 +128,7 @@ button {
 }
 
 #add-remove-btn:active {
-	background-color: var(--gray);
+	background-color: var(--light-gray);
 	border: 1.5px solid var(--white);
 }
 
@@ -178,7 +181,7 @@ button {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-top: 1.7px var(--dark-gray) solid;
+	border-top: 1.7px var(--gray) solid;
 	padding-block: .7rem 1.5rem;
 	margin-top: .7rem;
 	p {
@@ -187,7 +190,7 @@ button {
 }
 
 .total-item-cost, #order-total {
-	font-family: "Roboto", sans-serif;
+	font-family: var(--roboto);
 	font-size: .9rem;
 	font-weight: 500;
 }
@@ -205,33 +208,44 @@ button {
 /* ~~~~~~ pay modal ~~~~~~ */
 
 #pay-modal {
-	display: flex;
+	font-family: var(--roboto);
 	flex-direction: column;
 	gap: 1.4rem;
-	padding: 1rem;
-	margin:1.2rem;
 	border-radius: 4px;
-	box-shadow: 0 0 200px 30px var(--dark-gray);
+	box-shadow: 0 0 95px 0 #00000096;
+	border: none;
+	padding: 5%;
+	width: 75%;
 	h2 {
-		padding-top: .4rem;
-		font-size: 1.2rem;
-	}}
+		font-size: 1.4rem;
+	}
+}
+
+#pay-modal::backdrop {
+	background-color: var(--dark-gray);
+	opacity: 5%;
+}
 
 #pay-form {
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	gap: .85rem;
+	gap: 1.15rem;
 }
 
 input {
-	border: solid 1px #757575;
+	border: solid 1px var(--dark-gray);
 	border-radius: 4px;
-	padding: .75rem;
+	padding: .85rem;
+	font-size: 1rem;
 }
 
 input::placeholder {
-	color: #757575;
+	color: var(--dark-gray);
+}
+
+#pay-btn {
+	margin-top: 1.3;
 }
 
 .thank-you-note {

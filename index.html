@@ -29,12 +29,12 @@
 					<p>Total Price:</p>
 					<p id="order-total"></p>
 				</div>
-				<button id="complete-order-btn" class=" green-btn">Complete order</button>
+				<button id="complete-order-btn" type="submit" class=" green-btn">Complete order</button>
 			</div>
 		</main>
 	</div>
-	<!-- REMOVE -->
-	<div id="pay-modal">
+
+	<dialog id="pay-modal">
 		<h2 class="roboto">Enter card details</h2>
 		<form id="pay-form" action="submit"  class="roboto">
 			<input
@@ -49,10 +49,11 @@
 				name="cardNumber"
 				id="card-number"
 				placeholder="Enter card number"
-			aria-label="Card number"
-			required />
+				aria-label="Card number"
+				required />
 			<input
 				type="password"
+				pattern="^[0-9]{3}$"
 				name="cvv"
 				id="cvv"
 				placeholder="Enter CVV"
@@ -60,7 +61,7 @@
 				required />
 			<button id="pay-btn" class="green-btn">Pay</button>
 		</form>
-	</div>
+	</dialog>
 
 	<script src="index.js" type="module"></script>
 	<script src="https://kit.fontawesome.com/fd264b1039.js" crossorigin="anonymous"></script>
