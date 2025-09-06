@@ -8,14 +8,14 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Smythe&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="style.css">
-	<title>Jimmy's Diner</title>
+	<title>Julie's Diner</title>
 </head>
 
 <body>
 	<div id="wrapper">
 		<header class="smythe-regular">
 			<div id="header-img" aria-label="juicy burger header">
-				<h1>Jimmy's Diner</h1>
+				<h1>Julie's Diner</h1>
 				<p class="subheader">The best burgers and pizza in town.</p>
 			</div>
 		</header>
@@ -29,10 +29,44 @@
 					<p>Total Price:</p>
 					<p id="order-total"></p>
 				</div>
-				<button id="complete-order-btn" class=" green-btn">Complete order</button>
+				<button id="complete-order-btn" type="submit" class="green-btn">Complete order</button>
 			</div>
 		</main>
 	</div>
+	<dialog id="pay-modal">
+		<h2 class="roboto">Enter card details</h2>
+		<form id="pay-form" class="roboto">
+			<input
+			type="text"
+			name="fullCustomerName"
+			id="customer-name"
+			minlength="5"
+			maxlength="50"
+			placeholder="Enter your full name"
+			aria-label="Full name"
+			required />
+			<input
+			type="text"
+			name="cardNumber"
+			id="card-number"
+			pattern="\d{16}"
+			placeholder="Enter card number"
+			aria-label="Card number"
+			required />
+			<input
+				type="password"
+				name="cvv"
+				id="cvv"
+				pattern="[0-9]{3}"
+				minlength="3"
+				maxlength="3"
+				placeholder="Enter CVV"
+				aria-label="CVV"
+				required />
+			<button id="pay-btn" class="green-btn">Pay</button>
+		</form>
+	</dialog>
+
 	<script src="index.js" type="module"></script>
 	<script src="https://kit.fontawesome.com/fd264b1039.js" crossorigin="anonymous"></script>
 </body>

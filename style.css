@@ -1,8 +1,11 @@
 :root {
-	--dark-gray: #bfbfbf;
-	--gray: #dddddd;
+	--dark-gray: #757575;
+	--gray: #bfbfbf;
+	--light-gray: #dddddd;
+	--dark-green: #065f46;
 	--green: #16db99;
 	--white: #ffffff;
+	--roboto: "Roboto", sans-serif;
 }
 
 html, body, h1, h2, p, .subheader {
@@ -28,15 +31,19 @@ body, html {
 }
 
 #header-img {
-    background-image: url("images/header.png");
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: 100% auto;
-		aspect-ratio: 553/167;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding-left: 1.4rem;
+	background-image: url("images/header.png");
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: 100% auto;
+	aspect-ratio: 553/167;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 1.4rem;
+}
+
+h1 {
+	font-size: 2.6rem;
 }
 
 h1 {
@@ -56,7 +63,7 @@ h1, .subheader {
 h2 {
 	text-align: center;
 	font-size: 2.2rem;
-	margin-block:.7rem .5rem;
+	margin-block: .7rem .5rem;
 }
 
 #main {
@@ -68,8 +75,8 @@ h2 {
 /* ~~~~~~~~~~ MENU ~~~~~~~~~~ */
 
 #menu hr {
-  border-top: .5px solid var(--dark-gray);
-  border-bottom: none;
+	border-top: .5px solid var(--gray);
+	border-bottom: none;
 	margin: 1.1rem 4.5%;
 }
 
@@ -81,11 +88,11 @@ h2 {
 }
 
 .emoji {
-	font-size:5.2rem;
+	font-size: 5.2rem;
 }
 
 button {
-	font-family: "Roboto", sans-serif;
+	font-family: var(--roboto);
 }
 
 .menu-item-text {
@@ -110,26 +117,27 @@ button {
 }
 
 .add-remove {
-		padding-right:.4rem;
+	padding-right: .4rem;
 }
+
 .add-remove-btn {
 	align-self: center;
 	justify-self: start;
 	background-color: var(--white);
-	border: 1.5px solid var(--gray);
+	border: 1.5px solid var(--light-gray);
 	border-radius: 100%;
-	width:2.5rem;
-	height:2.5rem;
-	font-size:1.4rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	font-size: 1.4rem;
 	font-weight: lighter;
 }
 
 #add-remove-btn:active {
-	background-color: var(--gray);
+	background-color: var(--light-gray);
 	border: 1.5px solid var(--white);
 }
 
-  /* ~~~~~~~~~~ CUSTOMER ORDER SUMMARY ~~~~~~~~~~ */
+/* ~~~~~~~~~~ CUSTOMER ORDER SUMMARY ~~~~~~~~~~ */
 
 #order-summary {
 	display: none;
@@ -155,6 +163,7 @@ button {
 	justify-content: space-between;
 	align-items: center;
 }
+
 .item-name-and-remove-btn {
 	display: flex;
 	flex-direction: row;
@@ -178,16 +187,17 @@ button {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-top: 1.7px var(--dark-gray) solid;
+	border-top: 1.7px var(--gray) solid;
 	padding-block: .7rem 1.5rem;
 	margin-top: .7rem;
+
 	p {
 		font-size: 1.35rem;
 	}
 }
 
 .total-item-cost, #order-total {
-	font-family: "Roboto", sans-serif;
+	font-family: var(--roboto);
 	font-size: .9rem;
 	font-weight: 500;
 }
@@ -198,6 +208,58 @@ button {
 	border-radius: 4px;
 	border: none;
 	box-shadow: none;
-	height:3rem;
-	font-size:1.05rem;
+	height: 3rem;
+	font-size: 1.05rem;
+}
+
+/* ~~~~~~ pay modal ~~~~~~ */
+
+#pay-modal {
+	font-family: var(--roboto);
+	flex-direction: column;
+	gap: 1.4rem;
+	border-radius: 4px;
+	box-shadow: 0 0 95px 0 #00000096;
+	border: none;
+	padding: 5%;
+	width: 75%;
+
+	h2 {
+		font-size: 1.4rem;
+	}
+}
+
+#pay-modal::backdrop {
+	background-color: var(--dark-gray);
+	opacity: 5%;
+}
+
+#pay-form {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1.15rem;
+}
+
+input {
+	border: solid 1px var(--dark-gray);
+	border-radius: 4px;
+	padding: .85rem;
+	font-size: 1rem;
+}
+
+input::placeholder {
+	color: var(--dark-gray);
+}
+
+#pay-btn {
+	margin-top: 1.3;
+}
+
+.thank-you-note {
+	background-color: #ecfdf5;
+	color: var(--dark-green);
+	line-height: 1.5;
+	padding: 2.25rem 1.8rem;
+	border: dotted 2px var(--dark-green);
 }
