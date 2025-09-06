@@ -2,6 +2,7 @@
 	--dark-gray: #757575;
 	--gray: #bfbfbf;
 	--light-gray: #dddddd;
+	--dark-green: #065f46;
 	--green: #16db99;
 	--white: #ffffff;
 	--roboto: "Roboto", sans-serif;
@@ -31,15 +32,15 @@ body, html {
 }
 
 #header-img {
-    background-image: url("images/header.png");
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: 100% auto;
-		aspect-ratio: 553/167;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding-left: 1.4rem;
+	background-image: url("images/header.png");
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: 100% auto;
+	aspect-ratio: 553/167;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 1.4rem;
 }
 
 h1 {
@@ -59,7 +60,7 @@ h1, .subheader {
 h2 {
 	text-align: center;
 	font-size: 2.2rem;
-	margin-block:.7rem .5rem;
+	margin-block: .7rem .5rem;
 }
 
 #main {
@@ -71,8 +72,8 @@ h2 {
 /* ~~~~~~~~~~ MENU ~~~~~~~~~~ */
 
 #menu hr {
-  border-top: .5px solid var(--gray);
-  border-bottom: none;
+	border-top: .5px solid var(--gray);
+	border-bottom: none;
 	margin: 1.1rem 4.5%;
 }
 
@@ -84,7 +85,7 @@ h2 {
 }
 
 .emoji {
-	font-size:5.2rem;
+	font-size: 5.2rem;
 }
 
 button {
@@ -113,17 +114,18 @@ button {
 }
 
 .add-remove {
-		padding-right:.4rem;
+	padding-right: .4rem;
 }
+
 .add-remove-btn {
 	align-self: center;
 	justify-self: start;
 	background-color: var(--white);
 	border: 1.5px solid var(--light-gray);
 	border-radius: 100%;
-	width:2.5rem;
-	height:2.5rem;
-	font-size:1.4rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	font-size: 1.4rem;
 	font-weight: lighter;
 }
 
@@ -132,7 +134,7 @@ button {
 	border: 1.5px solid var(--white);
 }
 
-  /* ~~~~~~~~~~ CUSTOMER ORDER SUMMARY ~~~~~~~~~~ */
+/* ~~~~~~~~~~ CUSTOMER ORDER SUMMARY ~~~~~~~~~~ */
 
 #order-summary {
 	display: none;
@@ -140,6 +142,7 @@ button {
 	flex: 1;
 	padding: 0 4.5% .8rem 4.5%;
 	align-items: stretch;
+
 	.item-name {
 		font-size: 1.35rem;
 	}
@@ -158,6 +161,7 @@ button {
 	justify-content: space-between;
 	align-items: center;
 }
+
 .item-name-and-remove-btn {
 	display: flex;
 	flex-direction: row;
@@ -184,6 +188,7 @@ button {
 	border-top: 1.7px var(--gray) solid;
 	padding-block: .7rem 1.5rem;
 	margin-top: .7rem;
+
 	p {
 		font-size: 1.35rem;
 	}
@@ -201,8 +206,8 @@ button {
 	border-radius: 4px;
 	border: none;
 	box-shadow: none;
-	height:3rem;
-	font-size:1.05rem;
+	height: 3rem;
+	font-size: 1.05rem;
 }
 
 /* ~~~~~~ pay modal ~~~~~~ */
@@ -216,6 +221,7 @@ button {
 	border: none;
 	padding: 5%;
 	width: 75%;
+
 	h2 {
 		font-size: 1.4rem;
 	}
@@ -249,10 +255,9 @@ input::placeholder {
 }
 
 .thank-you-note {
-	font-size: 1.5rem;
-	text-align: center;
-	background-color: #ECFDF5;
-	color: #065F46;
-	margin: 1.8rem 1.5rem;
-	padding: 1.8rem;
+	background-color: #ecfdf5;
+	color: var(--dark-green);
+	line-height: 1.5;
+	padding: 2.25rem 1.8rem;
+	border: dotted 2px var(--dark-green);
 }

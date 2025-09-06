@@ -6,6 +6,8 @@ const selectionListEl = document.getElementById('selection-list')
 const orderTotalEl = document.getElementById('order-total')
 const completeOrderButton = document.getElementById('complete-order-btn')
 const payModal = document.getElementById('pay-modal')
+const payForm = document.getElementById('pay-form')
+
 let orderTotal = 0
 let selectedItemObject = {}
 let selectedItemObjectArray = []
@@ -22,6 +24,11 @@ document.addEventListener('click', (event) => {
 completeOrderButton.addEventListener('click', () => {
 	payModal.showModal()
 	payModal.style.display = 'flex'
+})
+
+payForm.addEventListener('submit', (event) => {
+	event.preventDefault()
+	handlePayment()
 })
 
 function handleOrderSummary(itemId) {
@@ -120,10 +127,34 @@ function createMenuHtml() {
 	return mapMenu.join('')
 }
 
+function createThanYouNote(customerName) {
+	orderSummaryEl.innerHTML =
+		`<h2 class="thank-you-note smythe-regular" >
+		Thanks, ${customerName}!<br>
+		Your order is on its way!
+		</div>`
+}
+
 function renderMenu() {
 	menuEl.innerHTML = createMenuHtml()
 }
 
 function renderSelectionList(selectionListHtmlArray) {
 	selectionListEl.innerHTML = selectionListHtmlArray.join('')
+}
+
+function handlePayment() {
+	const customerName = document.getElementById('customer-name').value
+	const cardNumber = document.getElementById('card-number').value
+	const cvv = document.getElementById('cvv').value
+
+	payModal.close()
+	payModal.style.display = 'none'
+
+	console.log(`Payment details:
+			Name: ${customerName}
+			Card number: ${cardNumber}
+			CVV: ${cvv}`)
+
+	createThanYouNote(customerName)
 }
