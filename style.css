@@ -6,6 +6,7 @@
 	--green: #16db99;
 	--white: #ffffff;
 	--roboto: "Roboto", sans-serif;
+	--serif: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 html, body, h1, h2, p, .subheader {
@@ -171,17 +172,19 @@ button {
 }
 
 .remove-btn {
+	font-family: var(--serif);
+	font-size: 75%;
+	color: var(--light-gray);
 	background: none;
 	border: none;
-	font-size: .85rem;
-	color: #bbbbbb;
+	margin-left: .6rem;
 }
 
-/* .multiple-item {
-	display: none;
-	font-size:1.4rem;
+.multiple-items {
+	font-size: 1.4rem;
 	font-weight: lighter;
-} */
+	margin-left: .6rem;
+}
 
 .total-container {
 	display: flex;

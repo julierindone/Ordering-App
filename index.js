@@ -99,10 +99,15 @@ function createNewObject(itemId) {
 // TODO: Add conditional so span only shows if quantity is >1
 // TODO: update + to - on the add-remove-btn button next to the item in the menu.
 function getSelectedItemHtml(item) {
+	let multiples = ''
+	if (item.quantity >= 2) {
+		multiples = `<span class="multiple-items">x${item.quantity}</span>`
+	}
+
 	return `
 		<div class="selection">
 			<div class="item-name-and-remove-btn">
-			<p class="item-name">${item.name}&ensp;<span class="multiple-item">(x${item.quantity})</span></p>
+			<p class="item-name">${item.name}${multiples}<span class="remove-btn">remove</span></p>
 			</div>
 			<p class="total-item-cost">$${item.totalItemCost}</p>
 		</div>`
