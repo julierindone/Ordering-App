@@ -144,7 +144,7 @@ button {
 	display: none;
 	flex-direction: column;
 	flex: 1;
-	padding: 0 4.5% .8rem 4.5%;
+	padding: 0.2rem 4.5% .8rem 4.5%;
 	align-items: stretch;
 	.item-name {
 		font-size: 1.35rem;
@@ -154,8 +154,8 @@ button {
 #selection-list {
 	display: flex;
 	flex-direction: column;
-	gap: .5rem;
-	padding-top: .8rem;
+	gap: .4rem;
+	padding-top: .5rem;
 }
 
 .selection {
@@ -191,19 +191,24 @@ button {
 	justify-content: space-between;
 	align-items: center;
 	border-top: 1.7px var(--gray) solid;
-	padding-block: .7rem 1.5rem;
+	padding-block: .7rem 1.3rem;
 	margin-top: .7rem;
 
 	p {
-		font-size: 1.35rem;
+		font-size: 1.4rem;
 	}
 }
 
 .total-item-cost, #order-total {
-	font-family: var(--roboto);
+	font-family: var(--serif);
 	font-size: .9rem;
 	font-weight: 500;
 }
+
+#order-total {
+	font-size: 1rem;
+}
+
 
 .green-btn {
 	background-color: var(--green);
