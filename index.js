@@ -19,6 +19,9 @@ document.addEventListener('click', (event) => {
 	if (event.target.dataset.item) {
 		handleOrderSummary(event.target.dataset.item)
 	}
+	if (event.target.dataset.selection) {
+		handleSelectionRemoval(event.target.dataset.selection)
+	}
 })
 
 completeOrderButton.addEventListener('click', () => {
@@ -80,6 +83,43 @@ function handleOrderSummary(itemId) {
 	orderSummaryEl.style.display != 'flex' && (orderSummaryEl.style.display = 'flex')
 }
 
+function handleSelectionRemoval(selection) {
+	let selectedItemObject = selectedItemObjectArray.filter((itemObject) => {
+		return itemObject.id === parseInt(selection)
+	})[0]
+
+	// TODO: REPEATED CODE; COULD BE SEPARATE function
+	// reassign selectedItemObject to variable 'item'.
+	let item = selectedItemObject
+	let itemHtml = getSelectedItemHtml(item)
+
+	// get index of item in selectedItemObjectArray to use in html updates
+	let itemIndex = selectedItemObjectArray.indexOf(item)
+	let itemHtmlIndex = selectionListHtmlArray.indexOf(itemHtml)
+
+	// reduce quantity by 1
+	item.quantity--
+	item.getTotalItemCost()
+
+	if (item.quantity === 0) {
+		selectedItemObjectArray.splice(itemIndex, 1)
+		selectionListHtmlArray.splice(itemHtmlIndex, 1)
+	}
+
+	else {
+		// update Html array
+		itemHtml = getSelectedItemHtml(item)
+		selectionListHtmlArray.splice(itemHtmlIndex, 1, itemHtml)
+	}
+
+	// update order total
+	orderTotal -= item.price
+	orderTotalEl.innerHTML = `$${orderTotal}`
+
+	renderSelectionList(selectionListHtmlArray)
+
+}
+
 function createNewObject(itemId) {
 	const selectedItemInMenuArray =
 		menuArray.filter((menuItem) => {
@@ -107,7 +147,7 @@ function getSelectedItemHtml(item) {
 	return `
 		<div class="selection">
 			<div class="item-name-and-remove-btn">
-			<p class="item-name">${item.name}${multiples}<span class="remove-btn">remove</span></p>
+			<p class="item-name">${item.name}${multiples}<span class="remove-btn" data-selection="${item.id}">remove</span></p>
 			</div>
 			<p class="total-item-cost">$${item.totalItemCost}</p>
 		</div>`

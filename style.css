@@ -193,10 +193,10 @@ button {
 	border-top: 1.7px var(--gray) solid;
 	padding-block: .7rem 1.3rem;
 	margin-top: .7rem;
-
-	p {
-		font-size: 1.4rem;
 	}
+
+.total-container	p {
+	font-size: 1.6rem;
 }
 
 .total-item-cost, #order-total {
@@ -206,7 +206,7 @@ button {
 }
 
 #order-total {
-	font-size: 1rem;
+	font-size: 1.15rem;
 }
 
 
