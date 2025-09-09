@@ -1,7 +1,6 @@
 :root {
 	--dark-gray: #757575;
-	--gray: #bfbfbf;
-	--light-gray: #dddddd;
+	--light-gray: #bfbfbf;
 	--dark-green: #065f46;
 	--green: #16db99;
 	--white: #ffffff;
@@ -117,25 +116,17 @@ button {
 	margin-top: .2rem;
 }
 
-.add-remove {
-	padding-right: .4rem;
-}
-
-.add-remove-btn {
-	align-self: center;
-	justify-self: start;
+.add-btn {
+	color: var(--dark-gray);
+	font-size: 1.4rem;
+	box-shadow: 0.08rem 0.08rem 1.6px #dedede;
+	justify-self: end;
 	background-color: var(--white);
 	border: 1.5px solid var(--light-gray);
 	border-radius: 100%;
-	width: 2.5rem;
-	height: 2.5rem;
-	font-size: 1.4rem;
-	font-weight: lighter;
-}
-
-#add-remove-btn:active {
-	background-color: var(--light-gray);
-	border: 1.5px solid var(--white);
+	width: 3rem;
+	height: 3rem;
+	padding: 0;
 }
 
 /* ~~~~~~~~~~ CUSTOMER ORDER SUMMARY ~~~~~~~~~~ */

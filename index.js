@@ -19,8 +19,8 @@ document.addEventListener('click', (event) => {
 	if (event.target.dataset.item) {
 		handleOrderSummary(event.target.dataset.item)
 	}
-	if (event.target.dataset.selection) {
-		handleSelectionRemoval(event.target.dataset.selection)
+	if (event.target.dataset.selectionToRemove) {
+		handleSelectionRemoval(event.target.dataset.selectionToRemove)
 	}
 })
 
@@ -83,9 +83,9 @@ function handleOrderSummary(itemId) {
 	orderSummaryEl.style.display != 'flex' && (orderSummaryEl.style.display = 'flex')
 }
 
-function handleSelectionRemoval(selection) {
+function handleSelectionRemoval(selectionToRemove) {
 	let selectedItemObject = selectedItemObjectArray.filter((itemObject) => {
-		return itemObject.id === parseInt(selection)
+		return itemObject.id === parseInt(selectionToRemove)
 	})[0]
 
 	// TODO: REPEATED CODE; COULD BE SEPARATE function
@@ -136,8 +136,6 @@ function createNewObject(itemId) {
 	}
 }
 
-// TODO: Add conditional so span only shows if quantity is >1
-// TODO: update + to - on the add-remove-btn button next to the item in the menu.
 function getSelectedItemHtml(item) {
 	let multiples = ''
 	if (item.quantity >= 2) {
@@ -147,7 +145,7 @@ function getSelectedItemHtml(item) {
 	return `
 		<div class="selection">
 			<div class="item-name-and-remove-btn">
-			<p class="item-name">${item.name}${multiples}<span class="remove-btn" data-selection="${item.id}">remove</span></p>
+			<p class="item-name">${item.name}${multiples}<span class="remove-btn" data-selection-to-remove="${item.id}">remove</span></p>
 			</div>
 			<p class="total-item-cost">$${item.totalItemCost}</p>
 		</div>`
@@ -163,9 +161,7 @@ function createMenuHtml() {
 				<p class="item-ingredients">${item.ingredients.join(', ')}</p>
 				<p class="item-price">$${item.price}</p>
 			</div>
-			<div class="add-remove">
-				<button class="add-remove-btn" type="click" data-item="${item.id}">+</button>
-			</div>
+			<button class="add-btn" type="click" data-item="${item.id}">+</button>
 		</div>
 		<hr>`
 	})
