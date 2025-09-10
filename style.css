@@ -65,16 +65,16 @@ h1, .subheader {
 }
 
 h2 {
+	font-size: 2.6rem;
 	text-align: center;
-	font-size: 2.4rem;
-	margin-block: 1rem 0;
 	text-shadow: 0.12rem 0.12rem 2px var(--light-gray);
+	margin-block: .7rem 0;
 }
 
 #main {
 	flex-grow: 1;
 	overflow-y: auto;
-	margin-top: .4rem;
+	margin-top: 0;
 }
 
 /* ~~~~~~~~~~ MENU ~~~~~~~~~~ */
@@ -82,7 +82,11 @@ h2 {
 #menu hr {
 	border-top: .5px solid var(--light-gray);
 	border-bottom: none;
-	margin: 0.7rem 4.5% 0.2rem 4.5%;
+	margin: 0.8rem 4.5% 0.3rem 4.5%;
+}
+
+#menu hr:last-child {
+	border-top: 1.5px solid var(--dark-gray);
 }
 
 .menu-item {
@@ -155,8 +159,12 @@ button {
 	display: none;
 	flex-direction: column;
 	flex: 1;
-	padding: 0.2rem 4.5% .8rem 4.5%;
 	align-items: stretch;
+	padding: 0 4.5% .8rem 4.5%;
+
+	h2 {
+		font-size: 2.1rem;
+	}
 
 	.item-name {
 		font-size: 1.35rem;
@@ -166,7 +174,7 @@ button {
 #selection-list {
 	display: flex;
 	flex-direction: column;
-	gap: .4rem;
+	gap: .5rem;
 	padding-top: .8rem;
 }
 
@@ -219,9 +227,9 @@ button {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-top: 1.7px var(--gray) solid;
+	border-top: 1.4px var(--light-gray) solid;
 	padding-block: .7rem 1.3rem;
-	margin-top: .7rem;
+	margin-top: .9rem;
 }
 
 .total-container p {
@@ -262,7 +270,14 @@ button {
 	box-shadow: 0.04rem 0.04rem 0 var(--dark-gray);
 }
 
-
+.thank-you-note {
+	color: var(--dark-green);
+	font-size: 2.4rem;
+	line-height: 1.5;
+	background-color: #ecfdf5;
+	padding: 1.65rem 1.8rem 1.95rem 1.8rem;
+	border: dotted 2px var(--dark-green);
+}
 
 /* ~~~~~~ pay modal ~~~~~~ */
 
@@ -275,6 +290,7 @@ button {
 	border: none;
 	padding: 2rem;
 	height: fit-content;
+
 	h2 {
 		font-size: 1.4rem;
 	}
@@ -305,12 +321,4 @@ input::placeholder {
 
 #pay-btn {
 	margin-top: 1.3;
-}
-
-.thank-you-note {
-	background-color: #ecfdf5;
-	color: var(--dark-green);
-	line-height: 1.5;
-	padding: 2.25rem 1.8rem;
-	border: dotted 2px var(--dark-green);
 }

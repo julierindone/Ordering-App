@@ -171,7 +171,7 @@ function createThanYouNote(customerName) {
 		`<h2 class="thank-you-note smythe-regular">
 		Thanks, ${customerName}!<br>
 		Your order is on its way!
-		</div>`
+		</h2>`
 }
 
 // // // // // Helper Functions // // // // //
