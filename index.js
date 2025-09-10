@@ -41,10 +41,7 @@ function handleOrderSummary(itemId) {
 	let itemHtml = ''
 
 	// check selectedItemObjectArray to see if item is already in it.
-	selectedItemObject =
-		selectedItemObjectArray.filter((menuItem) => {
-			return menuItem.id === parseInt(itemId)
-		})[0]
+	selectedItemObject = findMatchingItem(selectedItemObjectArray, itemId)
 
 	// if not, create new object.
 	if (!selectedItemObject) {
@@ -86,9 +83,7 @@ function handleOrderSummary(itemId) {
 }
 
 function handleSelectionRemoval(selectionToRemove) {
-	let selectedItemObject = selectedItemObjectArray.filter((itemObject) => {
-		return itemObject.id === parseInt(selectionToRemove)
-	})[0]
+	selectedItemObject = findMatchingItem(selectedItemObjectArray, selectionToRemove)
 
 	// TODO: REPEATED CODE; COULD BE SEPARATE function
 	// reassign selectedItemObject to variable 'item'.
@@ -123,10 +118,7 @@ function handleSelectionRemoval(selectionToRemove) {
 }
 
 function createNewObject(itemId) {
-	const selectedItemInMenuArray =
-		menuArray.filter((menuItem) => {
-			return menuItem.id === parseInt(itemId)
-		})[0]
+	const selectedItemInMenuArray = findMatchingItem(menuArray, itemId)
 
 	return {
 		name: selectedItemInMenuArray.name,
@@ -134,7 +126,7 @@ function createNewObject(itemId) {
 		id: selectedItemInMenuArray.id,
 		quantity: 0,
 		totalItemCost: 0,
-		getTotalItemCost: function () { this.totalItemCost = this.price * this.quantity } // will this recalculate automatically if another of the same item is added? should it not be a property?
+		getTotalItemCost: function() { this.totalItemCost = this.price * this.quantity }
 	}
 }
 
@@ -200,4 +192,13 @@ function createThanYouNote(customerName) {
 		Thanks, ${customerName}!<br>
 		Your order is on its way!
 		</div>`
+}
+
+// // // // // Helper Functions // // // // //
+function findMatchingItem(objectArray, itemId) {
+	let itemObject =
+		objectArray.filter((itemObject) => {
+			return itemObject.id === parseInt(itemId)
+		})[0];
+		return itemObject;
 }
