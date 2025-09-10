@@ -25,8 +25,10 @@ document.addEventListener('click', (event) => {
 })
 
 completeOrderButton.addEventListener('click', () => {
-	payModal.showModal()
+	let modalWidth = (document.getElementById('wrapper').clientWidth) * .80
+	payModal.style.width = `${modalWidth}px`
 	payModal.style.display = 'flex'
+	payModal.showModal()
 })
 
 payForm.addEventListener('submit', (event) => {
@@ -168,14 +170,6 @@ function createMenuHtml() {
 	return mapMenu.join('')
 }
 
-function createThanYouNote(customerName) {
-	orderSummaryEl.innerHTML =
-		`<h2 class="thank-you-note smythe-regular" >
-		Thanks, ${customerName}!<br>
-		Your order is on its way!
-		</div>`
-}
-
 function renderMenu() {
 	menuEl.innerHTML = createMenuHtml()
 }
@@ -198,4 +192,12 @@ function handlePayment() {
 			CVV: ${cvv}`)
 
 	createThanYouNote(customerName)
+}
+
+function createThanYouNote(customerName) {
+	orderSummaryEl.innerHTML =
+		`<h2 class="thank-you-note smythe-regular" >
+		Thanks, ${customerName}!<br>
+		Your order is on its way!
+		</div>`
 }
