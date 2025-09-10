@@ -8,6 +8,9 @@
 	--serif: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+html {
+	font-size: 100%;
+}
 html, body, h1, h2, p, .subheader {
 	margin: 0;
 }
@@ -97,7 +100,7 @@ h2 {
 }
 
 .emoji {
-	font-size: 5.2rem;
+	font-size: clamp(2.7994rem, 1.839rem + 5.8019vw, 6rem);
 }
 
 button {
