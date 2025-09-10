@@ -11,7 +11,6 @@ const payForm = document.getElementById('pay-form')
 let orderTotal = 0
 let selectedItemObject = {}
 let selectedItemObjectArray = []
-let selectionListHtmlArray = []
 
 document.addEventListener('DOMContentLoaded', renderMenu())
 
@@ -38,61 +37,39 @@ payForm.addEventListener('submit', (event) => {
 
 function handleOrderSummary(itemId) {
 	let item = ''
-	let itemHtml = ''
 
 	// check selectedItemObjectArray to see if item is already in it.
 	selectedItemObject = findMatchingItem(selectedItemObjectArray, itemId)
 
-	// if not, create new object.
+	// if not, create new object & push to array
 	if (!selectedItemObject) {
 		item = createNewObject(itemId)
-
-		// push to array
 		selectedItemObjectArray.push(item)
-
-		// create html
-		itemHtml = getSelectedItemHtml(item)
-		selectionListHtmlArray.push(itemHtml)
 	}
 
-	// if the item already in the selectedItemObjectArray, reassign selectedItemObject to variable 'item'.
+	// if so, reassign selectedItemObject to variable 'item'.
 	else {
 		item = selectedItemObject
-		itemHtml = getSelectedItemHtml(item)
 	}
 
-	// get index of item in selectedItemObjectArray to use in html updates
-	let itemHtmlIndex = selectionListHtmlArray.indexOf(itemHtml)
-
-	// update quantity and total cost for item
+	// update quantity, total cost for item, and order total
 	item.quantity++
 	item.getTotalItemCost()
-
-	// add price of selected item to orderTotal
-	// TODO: add reduction option
 	orderTotal += item.price
 	orderTotalEl.innerHTML = `$${orderTotal}`
 
-	// update item html in list
-	itemHtml = getSelectedItemHtml(item)
-	selectionListHtmlArray.splice(itemHtmlIndex, 1, itemHtml)
-
-	// add reload in DOM so selectionList fields are updated
-	renderSelectionList(selectionListHtmlArray)
-	orderSummaryEl.style.display != 'flex' && (orderSummaryEl.style.display = 'flex')
+	// update item html, render selection list
+	item.itemHtml = getSelectedItemHtml(item)
+	renderSelectionList(selectedItemObjectArray)
 }
 
 function handleSelectionRemoval(selectionToRemove) {
+	// find object to remove & reassign to 'item'
 	selectedItemObject = findMatchingItem(selectedItemObjectArray, selectionToRemove)
-
-	// TODO: REPEATED CODE; COULD BE SEPARATE function
-	// reassign selectedItemObject to variable 'item'.
 	let item = selectedItemObject
-	let itemHtml = getSelectedItemHtml(item)
 
-	// get index of item in selectedItemObjectArray to use in html updates
 	let itemIndex = selectedItemObjectArray.indexOf(item)
-	let itemHtmlIndex = selectionListHtmlArray.indexOf(itemHtml)
+	// let itemHtmlIndex = selectionListHtmlArray.indexOf(itemHtml)
 
 	// reduce quantity by 1
 	item.quantity--
@@ -100,21 +77,19 @@ function handleSelectionRemoval(selectionToRemove) {
 
 	if (item.quantity === 0) {
 		selectedItemObjectArray.splice(itemIndex, 1)
-		selectionListHtmlArray.splice(itemHtmlIndex, 1)
 	}
 
 	else {
-		// update Html array
-		itemHtml = getSelectedItemHtml(item)
-		selectionListHtmlArray.splice(itemHtmlIndex, 1, itemHtml)
+		// update Html
+		item.itemHtml = getSelectedItemHtml(item)
 	}
 
 	// update order total
 	orderTotal -= item.price
 	orderTotalEl.innerHTML = `$${orderTotal}`
 
-	renderSelectionList(selectionListHtmlArray)
-
+	// TODO: Do I need to rerender the whole list? or just the object?
+	renderSelectionList(selectedItemObjectArray)
 }
 
 function createNewObject(itemId) {
@@ -126,7 +101,8 @@ function createNewObject(itemId) {
 		id: selectedItemInMenuArray.id,
 		quantity: 0,
 		totalItemCost: 0,
-		getTotalItemCost: function() { this.totalItemCost = this.price * this.quantity }
+		getTotalItemCost: function () { this.totalItemCost = this.price * this.quantity },
+		itemHtml: ``
 	}
 }
 
@@ -166,8 +142,12 @@ function renderMenu() {
 	menuEl.innerHTML = createMenuHtml()
 }
 
-function renderSelectionList(selectionListHtmlArray) {
-	selectionListEl.innerHTML = selectionListHtmlArray.join('')
+function renderSelectionList(selectedItemObjectArray) {
+	selectionListEl.innerHTML = ''
+	selectedItemObjectArray.forEach(itemObject => {
+		selectionListEl.innerHTML += itemObject.itemHtml
+	})
+	orderSummaryEl.style.display != 'flex' && (orderSummaryEl.style.display = 'flex')
 }
 
 function handlePayment() {
@@ -188,7 +168,7 @@ function handlePayment() {
 
 function createThanYouNote(customerName) {
 	orderSummaryEl.innerHTML =
-		`<h2 class="thank-you-note smythe-regular" >
+		`<h2 class="thank-you-note smythe-regular">
 		Thanks, ${customerName}!<br>
 		Your order is on its way!
 		</div>`
@@ -196,9 +176,8 @@ function createThanYouNote(customerName) {
 
 // // // // // Helper Functions // // // // //
 function findMatchingItem(objectArray, itemId) {
-	let itemObject =
-		objectArray.filter((itemObject) => {
-			return itemObject.id === parseInt(itemId)
-		})[0];
-		return itemObject;
+	let itemObject = objectArray.filter((itemObject) => {
+		return itemObject.id === parseInt(itemId)
+	})[0];
+	return itemObject;
 }
