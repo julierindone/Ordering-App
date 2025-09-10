@@ -5,8 +5,8 @@
 - Coded from scratch; design was provided as a Figma mockup by the course instructor.
 - Improvements made to the original design for accessibility and aesthetic purposes.
 
-![Menu with order summary](images\Screenshot-summary.png)
+![Menu with order summary](images/Screenshot-summary.png)
 
-![Payment form](images\Screenshot-pay_modal.png)
+![Payment form](images/Screenshot-pay_modal.png)
 
-![Completed order](images\Screenshot-thanks.png)
+![Completed order](images/Screenshot-thanks.png)
